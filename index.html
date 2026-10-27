@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://vigilantintegratedsecurity.com/assets/og-image.jpg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
@@ -22,13 +22,16 @@
 
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#top">
+      <a class="brand" href="index.html">
         <img src="assets/logo-horizontal.webp" alt="Vigilant Integrated Security" width="560" height="190">
       </a>
-      <nav class="nav-links" aria-label="Main">
-        <a href="#services">Services</a>
-        <a href="#areas">Areas</a>
-        <a href="#assessment" class="nav-cta">Get an assessment</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="site-menu" aria-label="Main">
+        <a href="index.html#services">Services</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#assessment" class="nav-cta">Get an assessment</a>
       </nav>
     </div>
   </header>
@@ -135,11 +138,26 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container trust">
-        <p class="eyebrow">Standards &amp; partners</p>
-        <p class="trust-line">Proud member of ASIS International and partner of Put Tools in Schools.</p>
-        <p class="trust-sub">Technology partners: Acre Security, RAD (an AITX company), Axis Communications, Turing, and Honeywell Security.</p>
+    <section id="partners" class="section">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Technology partners</p>
+          <h2>Built on platforms we trust</h2>
+          <p class="section-sub">We design and install systems from Axis Communications, Hanwha Vision, Honeywell Security, Acre Security, Turing and RAD.</p>
+        </div>
+        <div class="logo-grid">
+          <a class="logo-card" href="products.html#axis"><img src="assets/logo-axis.webp" alt="Axis Communications" width="443" height="160" loading="lazy"></a>
+          <a class="logo-card" href="products.html#hanwha"><img src="assets/logo-hanwha.webp" alt="Hanwha Vision" width="520" height="141" loading="lazy"></a>
+          <a class="logo-card" href="products.html#honeywell"><img src="assets/logo-honeywell.webp" alt="Honeywell Security" width="456" height="160" loading="lazy"></a>
+          <a class="logo-card" href="products.html#acre"><img src="assets/logo-acre.webp" alt="Acre Security" width="383" height="160" loading="lazy"></a>
+          <a class="logo-card" href="products.html#turing"><img src="assets/logo-turing.webp" alt="Turing" width="520" height="103" loading="lazy"></a>
+          <a class="logo-card" href="products.html#rad"><img src="assets/logo-rad.webp" alt="RAD, an AITX company" width="249" height="160" loading="lazy"></a>
+        </div>
+        <div class="affiliations">
+          <div class="logo-card"><img src="assets/logo-asis.webp" alt="ASIS International" width="267" height="160" loading="lazy"></div>
+          <div class="logo-card"><img src="assets/logo-ptis.webp" alt="Put Tools in Schools" width="163" height="160" loading="lazy"></div>
+          <p>Proud member of <strong>ASIS International</strong> and partner of <strong>Put Tools in Schools</strong>.</p>
+        </div>
       </div>
     </section>
 
@@ -216,6 +234,9 @@
         <p class="licenses">NC Alarm License 983489-CSA &middot; NC Low Voltage License SP.FA/LV.34279 &middot; GA Low Voltage Contractor License LVA206166</p>
       </div>
       <div class="footer-links">
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
         <a href="tel:+18439910062">(843) 991-0062</a>
         <a href="https://www.linkedin.com/company/vigilantintegratedsecurity" rel="noopener">LinkedIn</a>
       </div>
@@ -224,6 +245,6 @@
 
   <a class="mobile-cta" href="#assessment">Request an assessment</a>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
