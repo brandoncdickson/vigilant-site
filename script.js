@@ -21,6 +21,44 @@
     }, { passive: true });
   });
 
+  // Lead form: submit to the Google Form in the background and show a thank-you
+  var form = document.getElementById('lead-form');
+  var success = document.getElementById('form-success');
+  if (form && success && window.fetch && window.URLSearchParams) {
+    var statusEl = form.querySelector('.form-status');
+    var submitBtn = form.querySelector('.btn-submit');
+    var trap = document.getElementById('f-website');
+
+    var showSuccess = function () {
+      var nameInput = document.getElementById('f-name');
+      var first = nameInput && nameInput.value.trim() ? nameInput.value.trim().split(/\s+/)[0] : '';
+      document.getElementById('success-name').textContent = first ? ', ' + first : '';
+      form.hidden = true;
+      success.hidden = false;
+      success.focus();
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (trap && trap.value) { showSuccess(); return; }
+      submitBtn.disabled = true;
+      statusEl.classList.remove('is-error');
+      statusEl.textContent = 'Sending your request...';
+      fetch(form.action, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new URLSearchParams(new FormData(form))
+      }).then(function () {
+        statusEl.textContent = '';
+        showSuccess();
+      }).catch(function () {
+        submitBtn.disabled = false;
+        statusEl.classList.add('is-error');
+        statusEl.textContent = 'We could not send your request. Please try again or call (843) 991-0062.';
+      });
+    });
+  }
+
   // Animated network background
   var canvas = document.getElementById('net');
   if (!canvas || !canvas.getContext) return;
