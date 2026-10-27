@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://vigilantintegratedsecurity.com/assets/og-image.jpg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -155,15 +155,54 @@
             <li><span>Hours</span>Mon&ndash;Fri, 7 AM&ndash;5 PM</li>
           </ul>
         </div>
-        <div class="form-frame">
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSd6uXtL1ZwCKx9wFtKQV6p0tEOZj57syOWhzwm-7Z6sCqeZTA/viewform?embedded=true"
-            title="Request a Site Assessment form"
-            loading="lazy"
-            height="1100"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0">Loading the quote form&hellip;</iframe>
+        <div class="form-panel">
+          <form id="lead-form" class="lead-form" action="https://docs.google.com/forms/d/e/1FAIpQLSd6uXtL1ZwCKx9wFtKQV6p0tEOZj57syOWhzwm-7Z6sCqeZTA/formResponse" method="POST" target="_blank">
+            <div class="field-row">
+              <div class="field">
+                <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-name" name="entry.1671732135" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-email">Work email <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" name="entry.1822059671" type="email" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-phone">Phone number</label>
+                <input id="f-phone" name="entry.124809056" type="tel" autocomplete="tel">
+              </div>
+              <div class="field">
+                <label for="f-address">Property address</label>
+                <input id="f-address" name="entry.968272288" type="text" autocomplete="street-address">
+              </div>
+            </div>
+            <fieldset class="field">
+              <legend>Which service do you need?</legend>
+              <div class="chips">
+                <label class="chip"><input type="radio" name="entry.961630538" value="Fixed security systems"><span>Fixed security systems</span></label>
+                <label class="chip"><input type="radio" name="entry.961630538" value="Mobile surveillance"><span>Mobile surveillance</span></label>
+                <label class="chip"><input type="radio" name="entry.961630538" value="Security operations center design"><span>SOC design</span></label>
+                <label class="chip"><input type="radio" name="entry.961630538" value="AI video analytics"><span>AI video analytics</span></label>
+                <label class="chip"><input type="radio" name="entry.961630538" value="Not sure yet"><span>Not sure yet</span></label>
+              </div>
+            </fieldset>
+            <div class="field">
+              <label for="f-goals">Describe your site and goals</label>
+              <textarea id="f-goals" name="entry.1416668270" rows="5" placeholder="Building type, number of entrances, current cameras, problem areas..."></textarea>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="f-website">Leave this field empty</label>
+              <input id="f-website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button class="btn btn-main btn-submit" type="submit">Request my assessment <span aria-hidden="true">&rarr;</span></button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="form-success" id="form-success" tabindex="-1" hidden>
+            <div class="success-icon" aria-hidden="true"></div>
+            <h3>Request received</h3>
+            <p>Thanks<span id="success-name"></span>. We'll reach out to schedule your site assessment. Need us sooner? Call <a href="tel:+18439910062">(843) 991-0062</a>.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -186,6 +225,6 @@
 
   <a class="mobile-cta" href="#assessment">Request an assessment</a>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
