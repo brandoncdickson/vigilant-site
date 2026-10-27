@@ -40,7 +40,8 @@
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.35 * dpr,
-        vy: (Math.random() - 0.5) * 0.35 * dpr
+        vy: (Math.random() - 0.5) * 0.35 * dpr,
+        warm: Math.random() < 0.12
       });
     }
   }
@@ -77,7 +78,7 @@
         b = points[j];
         d = Math.hypot(a.x - b.x, a.y - b.y);
         if (d < maxDist) {
-          ctx.strokeStyle = 'rgba(54, 242, 255, ' + ((1 - d / maxDist) * 0.32) + ')';
+          ctx.strokeStyle = 'rgba(111, 198, 242, ' + ((1 - d / maxDist) * 0.3) + ')';
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -86,9 +87,9 @@
       }
     }
 
-    ctx.fillStyle = 'rgba(157, 255, 92, 0.85)';
     for (i = 0; i < points.length; i++) {
       p = points[i];
+      ctx.fillStyle = p.warm ? 'rgba(240, 165, 96, 0.9)' : 'rgba(214, 236, 250, 0.85)';
       ctx.beginPath();
       ctx.arc(p.x, p.y, 1.6 * dpr, 0, Math.PI * 2);
       ctx.fill();
