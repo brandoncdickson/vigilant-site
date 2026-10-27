@@ -3,19 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vigilant Integrated Security | Commercial Security Systems</title>
-  <meta name="description" content="Vigilant Integrated Security designs and installs commercial security systems: access control, video surveillance, and alarm systems, with ongoing service and maintenance.">
+  <title>Vigilant Integrated Security | Fixed, Mobile and AI-Powered Security</title>
+  <meta name="description" content="Vigilant Integrated Security designs and installs commercial camera and access control systems, mobile surveillance, security operations centers, and AI video analytics in Charlotte, Matthews, Monroe, and Indian Trail.">
+  <meta name="theme-color" content="#05080d">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top">Vigilant Integrated Security</a>
-      <nav class="site-nav" aria-label="Main">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Vigilant Integrated Security home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Vigilant<span class="brand-sub">Integrated Security</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
         <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#areas">Areas</a>
+        <a href="#assessment" class="nav-cta">Get an assessment</a>
       </nav>
     </div>
   </header>
@@ -23,101 +30,131 @@
   <main id="top">
 
     <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Integrated Security Systems for Businesses</p>
-        <h1>Protect your facility with commercial security, access control, and surveillance.</h1>
-        <p class="hero-sub">Security Built on Trust</p>
-        <a class="btn btn-primary" href="#contact">Request a Security Quote</a>
+      <div class="container hero-inner">
+        <p class="kicker"><span class="live-dot" aria-hidden="true"></span> Integrated security for commercial properties</p>
+        <h1>
+          <span class="h1-line glitch" data-text="Protecting">Protecting</span>
+          <span class="h1-line grad">What Matters</span>
+        </h1>
+        <p class="lede">Fixed camera and access control systems, quick-deploy mobile surveillance, security operations centers, and AI video analytics for businesses and job sites.</p>
+        <div class="cta-row">
+          <a class="btn btn-main" href="#assessment">Request a Site Assessment <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-ghost" href="tel:+18439910062">Call (843) 991-0062</a>
+        </div>
+      </div>
+
+      <div class="radar" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="sweep"></div>
+        <span class="blip b1"></span>
+        <span class="blip b2"></span>
+        <span class="blip b3"></span>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Service highlights">
+      <div class="ticker-track">
+        <span>Fixed Systems</span><span>Mobile Surveillance</span><span>SOC Design &amp; Build</span><span>AI Video Analytics</span><span>Access Control</span>
+        <span>Fixed Systems</span><span>Mobile Surveillance</span><span>SOC Design &amp; Build</span><span>AI Video Analytics</span><span>Access Control</span>
       </div>
     </section>
 
     <section id="services" class="section">
       <div class="container">
-        <h2>Integrated Security Solutions</h2>
-        <p class="lead">Vigilant Integrated Security designs and installs commercial security systems tailored to your facility. Our solutions include access control, video surveillance, and alarm systems, supported by expert service and ongoing maintenance.</p>
+        <p class="eyebrow">What we do</p>
+        <h2>Four ways we protect what matters</h2>
 
         <div class="cards">
           <article class="card">
-            <h3>Access Control</h3>
-            <p>Control who enters your facility and when, with systems sized to your building and users.</p>
+            <span class="card-num">01</span>
+            <h3>Fixed Security Systems</h3>
+            <p>Permanent camera and access control systems for commercial buildings, auto dealerships, and homes, with support after go-live.</p>
           </article>
           <article class="card">
-            <h3>Video Surveillance</h3>
-            <p>Cameras and recording designed to cover the areas that matter most to your business.</p>
+            <span class="card-num">02</span>
+            <h3>Mobile Surveillance</h3>
+            <p>Quick-deploy camera units for construction sites and other high-risk properties, built to help meet insurer requirements.</p>
           </article>
           <article class="card">
-            <h3>Alarm Systems</h3>
-            <p>Intrusion detection and alerting for commercial properties, installed and tested end to end.</p>
+            <span class="card-num">03</span>
+            <h3>SOC Design &amp; Build</h3>
+            <p>We design and build integrated security solutions, including security operation centers from start to finish, with video walls and operator consoles.</p>
           </article>
           <article class="card">
-            <h3>Service &amp; Maintenance</h3>
-            <p>Ongoing support after installation so your systems keep working when you need them.</p>
+            <span class="card-num">04</span>
+            <h3>AI Video Analytics</h3>
+            <p>Cloud and on-premise analytics. We help you choose the platform and alert your staff to real events.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section section-alt">
-      <div class="container about">
+    <section id="areas" class="section section-band">
+      <div class="container split">
         <div>
-          <h2>Better yet, see us in person!</h2>
-          <p>We stay in constant communication with our customers until the job is done. To get a free quote, or if you have questions or special requests, just drop us a line.</p>
+          <p class="eyebrow">Where we work</p>
+          <h2>Serving businesses and job sites across the Charlotte area</h2>
         </div>
-        <div class="hours">
-          <h3>Hours</h3>
-          <table>
-            <tr><th scope="row">Monday</th><td>9:00 am – 5:00 pm</td></tr>
-            <tr><th scope="row">Tuesday</th><td>9:00 am – 5:00 pm</td></tr>
-            <tr><th scope="row">Wednesday</th><td>9:00 am – 5:00 pm</td></tr>
-            <tr><th scope="row">Thursday</th><td>9:00 am – 5:00 pm</td></tr>
-            <tr><th scope="row">Friday</th><td>9:00 am – 5:00 pm</td></tr>
-            <tr><th scope="row">Saturday</th><td>Closed</td></tr>
-            <tr><th scope="row">Sunday</th><td>Closed</td></tr>
-          </table>
-        </div>
+        <ul class="areas" aria-label="Service areas">
+          <li>Charlotte</li>
+          <li>Matthews</li>
+          <li>Monroe</li>
+          <li>Indian Trail</li>
+        </ul>
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <div class="container contact">
-        <h2>Get a Free Quote</h2>
-        <p>Tell us about your facility and we'll follow up.</p>
+    <section class="section">
+      <div class="container trust">
+        <p class="eyebrow">Standards &amp; partners</p>
+        <p class="trust-line">Proud member of ASIS International and partner of Put Tools in Schools.</p>
+        <p class="trust-sub">Technology partners: Acre Security, RAD (an AITX company), Axis Communications, Turing, and Honeywell Security.</p>
+      </div>
+    </section>
 
-        <!-- Static hosting can't process forms. Replace action with a form service
-             endpoint (for example Formspree) or use the mailto link below. -->
-        <form class="quote-form" action="mailto:[EMAIL ADDRESS]" method="post" enctype="text/plain">
-          <label>Name
-            <input type="text" name="name" autocomplete="name" required>
-          </label>
-          <label>Email
-            <input type="email" name="email" autocomplete="email" required>
-          </label>
-          <label>Phone
-            <input type="tel" name="phone" autocomplete="tel">
-          </label>
-          <label>Facility address
-            <input type="text" name="address" autocomplete="street-address">
-          </label>
-          <label>What do you need?
-            <textarea name="message" rows="5"></textarea>
-          </label>
-          <button type="submit" class="btn btn-primary">Send Request</button>
-        </form>
-
-        <div class="contact-details">
-          <p><strong>Phone:</strong> [PHONE NUMBER]</p>
-          <p><strong>Address:</strong> [STREET ADDRESS, CITY, STATE ZIP]</p>
+    <section id="assessment" class="section assess">
+      <div class="container assess-inner">
+        <div class="assess-copy">
+          <p class="eyebrow">Start here</p>
+          <h2>Request a Site Assessment</h2>
+          <p>Tell us about your property. We'll follow up to schedule a site assessment and walk through your options.</p>
+          <ul class="contact-list">
+            <li><span>Phone</span><a href="tel:+18439910062">(843) 991-0062</a></li>
+            <li><span>Hours</span>Mon&ndash;Fri, 7 AM&ndash;5 PM</li>
+          </ul>
+        </div>
+        <div class="form-frame">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd6uXtL1ZwCKx9wFtKQV6p0tEOZj57syOWhzwm-7Z6sCqeZTA/viewform?embedded=true"
+            title="Request a Site Assessment form"
+            loading="lazy"
+            height="1100"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0">Loading the quote form&hellip;</iframe>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Vigilant Integrated Security. All rights reserved.</p>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <p>&copy; 2026 Vigilant Integrated Security. All rights reserved.</p>
+        <p class="licenses">NC Alarm License 983489-CSA &middot; NC Low Voltage License SP.FA/LV.34279 &middot; GA Low Voltage Contractor License LVA206166</p>
+      </div>
+      <div class="footer-links">
+        <a href="tel:+18439910062">(843) 991-0062</a>
+        <a href="https://www.linkedin.com/company/vigilantintegratedsecurity" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
+  <a class="mobile-cta" href="#assessment">Request an assessment</a>
+
+  <script src="script.js"></script>
 </body>
 </html>
