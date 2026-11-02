@@ -661,6 +661,7 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
 .lead-form input[type="text"],
 .lead-form input[type="email"],
 .lead-form input[type="tel"],
+.lead-form select,
 .lead-form textarea {
   width: 100%;
   font: inherit;
@@ -672,8 +673,26 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .lead-form textarea { resize: vertical; min-height: 120px; }
+.consent-label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.consent-label input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  accent-color: var(--sky);
+}
 .lead-form ::placeholder { color: rgba(157, 178, 196, 0.6); }
 .lead-form input:focus,
+.lead-form select:focus,
 .lead-form textarea:focus {
   outline: none;
   border-color: var(--sky);
