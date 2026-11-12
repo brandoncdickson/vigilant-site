@@ -74,7 +74,7 @@
       }).catch(function () {
         submitBtn.disabled = false;
         statusEl.classList.add('is-error');
-        statusEl.textContent = 'We could not send your request. Please try again or call (980) 600-3653.';
+        statusEl.textContent = 'We could not send your request. Please try again or call (704) 796-3820.';
       });
     });
   }
