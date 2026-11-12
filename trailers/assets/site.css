@@ -53,6 +53,12 @@ section>*{max-width:68rem;margin-left:auto;margin-right:auto}
 .qform input,.qform select,.qform textarea{font:inherit;padding:.65rem .75rem;border:1px solid #556270;border-radius:3px;background:#fff;color:var(--ink)}
 .qform button{justify-self:start}
 .formnote{margin:0;color:#c6ced6}
+.answer{font-size:1.15rem;color:#fff;border-left:4px solid var(--red);padding-left:1rem}
+.guides{margin-top:2rem}
+.updated{color:var(--muted);font-size:.9rem}
+.article{max-width:46rem}
+.article p,.article li{color:#2a333c}
+.article h2{margin-top:2rem}
 footer{display:grid;grid-template-columns:1fr 2fr;gap:2rem;padding:2.5rem clamp(1rem,4vw,3rem);background:#0e151c;color:#c6ced6}
 footer a{color:#e3e8ee}
 footer h2{font-size:1.3rem;color:#fff}
