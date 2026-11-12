@@ -1,25 +1,135 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Solar camera trailer leasing in the Charlotte region | Vigilant Integrated Security</title>
 <meta name="description" content="Lease solar-powered security camera trailers for construction sites across the Charlotte region. Call (980) 600-3653.">
 <link rel="canonical" href="https://vigilantintegratedsecurity.com/trailers/">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css"></head><body>
-<header class="bar"><a class="brand" href="../"><img src="../assets/logo-horizontal.webp" alt="Vigilant Integrated Security" width="560" height="190"></a><a class="call" href="tel:+19806003653">Call (980) 600-3653</a></header>
-<main><section class="hero"><div class="hero-text"><h1>Solar camera trailers across the Charlotte region</h1>
-<p class="lede">Vigilant Integrated Security leases solar-powered security camera trailers to construction sites across the Charlotte region, with AI detection and 24/7 monitoring. Call (980) 600-3653.</p></div><svg class="rig" viewBox="0 0 320 300" aria-hidden="true">
- <line x1="150" y1="210" x2="150" y2="40" stroke="#9aa6b2" stroke-width="6"/>
- <rect x="128" y="22" width="44" height="22" rx="4" fill="#d9dee3"/>
- <circle cx="150" cy="54" r="12" fill="#2b3642" stroke="#d9dee3" stroke-width="3"/>
- <circle class="strobe red" cx="122" cy="33" r="7"/>
- <circle class="strobe blue" cx="178" cy="33" r="7"/>
- <polygon points="40,150 140,118 150,140 50,172" fill="#3b5b86" stroke="#9aa6b2" stroke-width="2"/>
- <line x1="60" y1="164" x2="146" y2="128" stroke="#9aa6b2" stroke-width="1"/>
- <rect x="60" y="200" width="190" height="38" rx="4" fill="#d9dee3"/>
- <line x1="250" y1="225" x2="300" y2="232" stroke="#d9dee3" stroke-width="5"/>
- <circle cx="105" cy="248" r="16" fill="#0f1720" stroke="#9aa6b2" stroke-width="4"/>
- <circle cx="205" cy="248" r="16" fill="#0f1720" stroke="#9aa6b2" stroke-width="4"/>
- <line x1="0" y1="266" x2="320" y2="266" stroke="#3a4552" stroke-width="2"/>
-</svg></section>
-<section class="hub"><h2>Pick your area</h2><ul><li><a href="charlotte/">Charlotte, NC</a></li><li><a href="concord/">Concord, NC</a></li><li><a href="gastonia/">Gastonia, NC</a></li><li><a href="huntersville/">Huntersville, NC</a></li><li><a href="mooresville/">Mooresville, NC</a></li><li><a href="matthews/">Matthews, NC</a></li><li><a href="monroe-indian-trail/">Monroe and Indian Trail, NC</a></li><li><a href="rock-hill/">Rock Hill, SC</a></li><li><a href="fort-mill/">Fort Mill, SC</a></li><li><a href="statesville/">Statesville, NC</a></li></ul></section><section class="hub"><h2>Guides</h2><ul><li><a href="guides/camera-trailer-cost/">How much does a construction camera trailer cost to lease?</a></li><li><a href="guides/camera-trailer-vs-security-guard/">Camera trailer vs. security guard for a construction site</a></li><li><a href="guides/lease-vs-buy-camera-trailer/">Should you lease or buy a security camera trailer?</a></li></ul></section></main>
-<footer><div><p><strong>Vigilant Integrated Security</strong><br>Based in Indian Trail, NC<br><a href="tel:+19806003653">(980) 600-3653</a></p></div></footer>
-</body></html>
+<meta name="theme-color" content="#050b12">
+<meta property="og:image" content="https://vigilantintegratedsecurity.com/assets/og-image.jpg">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../styles.css?v=6">
+<link rel="stylesheet" href="./assets/site.css?v=7">
+</head>
+<body>
+
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/logo-horizontal.webp" alt="Vigilant Integrated Security" width="560" height="190">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="nav-links" id="site-menu" aria-label="Main">
+        <a href="../index.html#services">Services</a>
+        <a href="../products.html">Products</a>
+        <a href="../about.html">About</a>
+        <a href="../team.html">Team</a>
+        <a href="./" aria-current="page">Camera Trailers</a>
+        <a href="../index.html#assessment" class="nav-cta">Get an assessment</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero t-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker"><span class="live-dot" aria-hidden="true"></span> Camera trailer leasing</p>
+          <h1>Solar camera trailers <span class="accent">across the Charlotte region</span></h1>
+          <p class="lede answer">Vigilant Integrated Security leases solar-powered security camera trailers to construction sites across the Charlotte region, with AI detection and 24/7 monitoring. Call (980) 600-3653.</p>
+          <div class="cta-row">
+            <a class="btn btn-main" href="#areas">Pick your area <span aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-ghost" href="tel:+19806003653">Call (980) 600-3653</a>
+          </div>
+        </div>
+        <figure class="t-photo">
+          <img src="../assets/mobile-surveillance.webp" alt="Solar-powered camera trailer with cameras on a raised mast at a construction site" width="900" height="672">
+          <figcaption><span class="live-dot" aria-hidden="true"></span> Monitored 24/7</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Trailer highlights">
+      <div class="ticker-track">
+        <span>Solar Powered</span><span>AI Detection</span><span>24/7 Monitoring</span><span>Live Talk-Down</span><span>LTE/5G Connected</span><span>Set Up in Under 20 Minutes</span>
+        <span>Solar Powered</span><span>AI Detection</span><span>24/7 Monitoring</span><span>Live Talk-Down</span><span>LTE/5G Connected</span><span>Set Up in Under 20 Minutes</span>
+      </div>
+    </section>
+
+    <section id="areas" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Service areas</p>
+          <h2>Pick your area</h2>
+        </div>
+        <ul class="mini-services tile-grid">
+          <li><a href="charlotte/"><span style="color:inherit">Charlotte<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="concord/"><span style="color:inherit">Concord<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="gastonia/"><span style="color:inherit">Gastonia<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="huntersville/"><span style="color:inherit">Huntersville<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="mooresville/"><span style="color:inherit">Mooresville<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="matthews/"><span style="color:inherit">Matthews<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="monroe-indian-trail/"><span style="color:inherit">Monroe and Indian Trail<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="rock-hill/"><span style="color:inherit">Rock Hill<small>South Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="fort-mill/"><span style="color:inherit">Fort Mill<small>South Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="statesville/"><span style="color:inherit">Statesville<small>North Carolina</small></span> <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-band">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Before you lease</p>
+          <h2>Guides</h2>
+        </div>
+        <ul class="mini-services tile-grid tile-wide">
+          <li><a href="guides/camera-trailer-cost/">How much does a construction camera trailer cost to lease? <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="guides/camera-trailer-vs-security-guard/">Camera trailer vs. security guard for a construction site <span aria-hidden="true">&rarr;</span></a></li>
+          <li><a href="guides/lease-vs-buy-camera-trailer/">Should you lease or buy a security camera trailer? <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section cta-band">
+      <div class="container cta-inner">
+        <div>
+          <h2>Need a trailer on site?</h2>
+          <p>Tell us where the job is and we'll reply with a monthly price.</p>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-main" href="../index.html#assessment">Request a Site Assessment <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn-ghost" href="tel:+19806003653">Call (980) 600-3653</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="../assets/logo-horizontal.webp" alt="Vigilant Integrated Security" width="560" height="190" loading="lazy">
+        <p>&copy; 2026 Vigilant Integrated Security. Based in Indian Trail, NC. All rights reserved.</p>
+        <p class="licenses">NC Alarm License 983489-CSA &middot; NC Low Voltage License SP.FA/LV.34279 &middot; GA Low Voltage Contractor License LVA206166</p>
+      </div>
+      <div class="footer-links">
+        <a href="../products.html">Products</a>
+        <a href="../about.html">About</a>
+        <a href="../team.html">Team</a>
+        <a href="./">Camera Trailers</a>
+        <a href="tel:+19806003653">(980) 600-3653</a>
+        <a href="https://www.linkedin.com/company/vigilantintegratedsecurity" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="mobile-cta" href="../index.html#assessment">Request an assessment</a>
+
+  <script src="../script.js?v=6"></script>
+</body>
+</html>
