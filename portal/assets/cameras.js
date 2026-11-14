@@ -31,9 +31,14 @@
       var card = document.createElement("article");
       card.className = "cam-card";
       card.id = "card-" + c.id;
-      var img = document.createElement("img");
-      img.alt = c.name; img.src = "/api/camera/" + encodeURIComponent(c.id) + "/still.jpg?t=" + (c.still || 0);
-      img.onerror = function () { img.removeAttribute("src"); };
+      var img;
+      if (c.still) {
+        img = document.createElement("img");
+        img.alt = c.name; img.src = "/api/camera/" + encodeURIComponent(c.id) + "/still.jpg?t=" + c.still;
+        img.onerror = function () { img.replaceWith(placeholder()); };
+      } else {
+        img = placeholder();
+      }
       var body = document.createElement("div"); body.className = "cam-card-body";
       var title = document.createElement("strong"); title.textContent = c.name;
       var meta = document.createElement("div"); meta.className = "portal-count";
@@ -45,6 +50,13 @@
       body.appendChild(title); body.appendChild(meta); body.appendChild(badge); body.appendChild(btn);
       card.appendChild(img); card.appendChild(body); grid.appendChild(card);
     });
+  }
+
+  function placeholder() {
+    var p = document.createElement("div");
+    p.className = "cam-placeholder";
+    p.textContent = "Still on the way";
+    return p;
   }
 
   function waitIce(conn) {
@@ -112,7 +124,13 @@
   function refreshStatus() {
     getJSON(CAMERAS_URL).then(function (rows) {
       if (!rows) return;
+      var changed = false;
+      rows.forEach(function (fresh) {
+        var old = cams.filter(function (c) { return c.id === fresh.id; })[0];
+        if (!old || String(old.still) !== String(fresh.still)) changed = true;
+      });
       cams = rows;
+      if (changed) { renderCards(); return; }  // a new still arrived: redraw the grid
       rows.forEach(function (fresh) {
         var b = $("st-" + fresh.id);
         if (b) { b.className = "badge " + fresh.state; b.textContent = LABELS[fresh.state] || fresh.state; }
