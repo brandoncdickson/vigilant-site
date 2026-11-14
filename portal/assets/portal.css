@@ -143,10 +143,11 @@ body.portal {
 }
 
 /* camera wall and player */
-.portal-tabs{display:flex;gap:6px;margin-left:auto;margin-right:12px}
+.portal-tabs{display:flex;gap:6px}
 .portal-tabs a{padding:8px 14px;border-radius:6px;color:inherit;text-decoration:none;font-weight:600}
 .portal-tabs a[aria-current="page"]{background:#0f2a44;color:#fff}
-.cam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:14px}
+.portal-actions{display:flex;align-items:center;gap:12px;margin-left:auto}
+.cam-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
 .cam-card{border:1px solid #dfe6ec;border-radius:10px;overflow:hidden;background:#fff}
 .cam-card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#0c1822;display:block}
 .cam-card-body{padding:10px 12px;display:grid;gap:6px}
@@ -157,4 +158,4 @@ body.portal {
 .badge.ready{background:#d8f3e2;color:#14532d}
 .badge.connecting{background:#fde9c8;color:#7a4a00}
 .badge.offline,.badge.idle{background:#eceff2;color:#5b6b78}
-@media (max-width:700px){.portal-tabs{margin-left:0;width:100%;order:3}}
+@media (max-width:700px){.cam-grid{grid-template-columns:1fr}.portal-actions{margin-left:0;width:100%;justify-content:space-between}}
