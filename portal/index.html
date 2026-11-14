@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Customer Portal | Vigilant Integrated Security</title>
+  <meta name="theme-color" content="#050b12">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="stylesheet" href="../styles.css?v=6">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body class="portal" data-page="login">
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/logo-horizontal.webp" alt="Vigilant Integrated Security" width="560" height="190">
+      </a>
+      <span class="portal-badge">Customer Portal</span>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <section class="section portal-section">
+      <div class="container portal-narrow">
+        <p class="eyebrow">Secure sign-in</p>
+        <h1 class="portal-title">Sign in to your portal</h1>
+
+        <div class="form-panel portal-panel">
+          <form id="login-form" class="lead-form" action="/portal/api/login" method="POST" novalidate>
+            <div class="field">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="username" required>
+            </div>
+            <div class="field">
+              <label for="password">Password <span class="req" aria-hidden="true">*</span></label>
+              <input id="password" name="password" type="password" autocomplete="current-password" required>
+            </div>
+            <div class="field">
+              <label for="totp">Two-factor code <span class="req" aria-hidden="true">*</span></label>
+              <input id="totp" name="totp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required>
+              <span class="field-hint">Enter the 6-digit code from your authenticator app.</span>
+            </div>
+            <button class="btn btn-main btn-submit" type="submit">Sign in <span aria-hidden="true">&rarr;</span></button>
+            <p class="form-status portal-error" id="login-error" role="alert" aria-live="assertive" hidden></p>
+          </form>
+        </div>
+
+        <p class="portal-note">AI review assists and does not replace human judgment. It makes no guarantees.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer portal-footer">
+    <div class="container footer-inner">
+      <p class="portal-disclaimer">AI review assists and does not replace human judgment. It does not guarantee detection or outcomes, and it does not confirm compliance with any law, policy, or safety rule.</p>
+      <p>&copy; 2026 Vigilant Integrated Security. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/portal.js"></script>
+</body>
+</html>
