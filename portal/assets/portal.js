@@ -6,6 +6,7 @@
 
   var LOGIN_URL = "/api/login";
   var INCIDENTS_URL = "/api/incidents";
+  var ACCOUNTS_URL = "/api/accounts";
   var LOGOUT_URL = "/api/logout";
   var LOGIN_PAGE = "index.html";
   var INCIDENTS_PAGE = "incidents.html";
@@ -156,10 +157,53 @@
       : "";
   }
 
+  function selectedAccount() {
+    var sel = document.getElementById("account-select");
+    return sel ? sel.value : "";
+  }
+
+  function loadAccounts() {
+    var sel = document.getElementById("account-select");
+    return fetch(ACCOUNTS_URL, {
+      credentials: "same-origin",
+      headers: { "Accept": "application/json" }
+    })
+      .then(function (res) {
+        if (res.status === 401 || res.status === 403) {
+          window.location.href = LOGIN_PAGE;
+          return null;
+        }
+        return res.ok ? res.json() : [];
+      })
+      .then(function (accounts) {
+        if (accounts === null) return;
+        sel.innerHTML = "";
+        var all = document.createElement("option");
+        all.value = "";
+        all.textContent = accounts.length > 1 ? "All accounts" : (accounts[0] ? accounts[0].account : "No accounts");
+        sel.appendChild(all);
+        if (accounts.length > 1) {
+          accounts.forEach(function (a) {
+            var opt = document.createElement("option");
+            opt.value = a.account;
+            opt.textContent = a.account;
+            sel.appendChild(opt);
+          });
+        }
+        sel.addEventListener("change", loadIncidents);
+        loadIncidents();
+      })
+      .catch(function () {
+        loadIncidents();
+      });
+  }
+
   function loadIncidents() {
     var errorEl = document.getElementById("load-error");
+    var acct = selectedAccount();
+    var url = INCIDENTS_URL + (acct ? "?account=" + encodeURIComponent(acct) : "");
 
-    return fetch(INCIDENTS_URL, {
+    return fetch(url, {
       credentials: "same-origin",
       headers: { "Accept": "application/json" }
     })
@@ -205,7 +249,7 @@
     document.getElementById("signout-btn").addEventListener("click", function () {
       signOut(this);
     });
-    loadIncidents();
+    loadAccounts();
   }
 
   if (page === "login") {
