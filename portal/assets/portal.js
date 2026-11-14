@@ -4,9 +4,9 @@
 (function () {
   "use strict";
 
-  var LOGIN_URL = "/portal/api/login";
-  var INCIDENTS_URL = "/portal/api/incidents";
-  var LOGOUT_URL = "/portal/api/logout";
+  var LOGIN_URL = "/api/login";
+  var INCIDENTS_URL = "/api/incidents";
+  var LOGOUT_URL = "/api/logout";
   var LOGIN_PAGE = "index.html";
   var INCIDENTS_PAGE = "incidents.html";
 
