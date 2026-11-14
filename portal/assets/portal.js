@@ -128,7 +128,7 @@
       var pdfTd = document.createElement("td");
       if (row.pdf_url) {
         var link = document.createElement("a");
-        link.href = row.pdf_url;
+        link.href = row.pdf_url; link.target = "_blank"; link.rel = "noopener";
         link.textContent = "Open PDF";
         link.target = "_blank";
         link.rel = "noopener";

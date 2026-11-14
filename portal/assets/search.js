@@ -34,7 +34,7 @@
       var tag = document.createElement("span"); tag.className = "badge"; tag.textContent = r.verdict;
       head.appendChild(when); head.appendChild(cam); head.appendChild(tag);
       var text = document.createElement("p"); text.textContent = r.summary || "";
-      var link = document.createElement("a"); link.href = r.pdf_url; link.textContent = "Open report (PDF)";
+      var link = document.createElement("a"); link.href = r.pdf_url; link.target = "_blank"; link.rel = "noopener"; link.textContent = "Open report (PDF)";
       link.className = "btn btn-ghost";
       card.appendChild(head); card.appendChild(text); card.appendChild(link);
       box.appendChild(card);
