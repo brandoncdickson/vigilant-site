@@ -38,18 +38,9 @@
           <p class="portal-count" id="cam-count" aria-live="polite"></p>
         </div>
 
-        <div class="cam-player" id="cam-player" hidden>
-          <div class="cam-player-head">
-            <strong id="player-name"></strong>
-            <span class="badge" id="player-status">Connecting...</span>
-            <button class="btn btn-ghost" id="player-close" type="button">Close</button>
-          </div>
-          <video id="player-video" autoplay muted playsinline controls></video>
-          <p class="portal-count" id="player-msg"></p>
-        </div>
-
         <p class="portal-error" id="load-error" hidden></p>
         <div class="cam-grid" id="cam-grid"></div>
+        <div class="cam-pager"><button class="btn btn-ghost" id="prev" type="button">&larr; Previous</button><span class="portal-count" id="pg"></span><button class="btn btn-ghost" id="next" type="button">Next &rarr;</button></div>
       </div>
     </section>
   </main>
