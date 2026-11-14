@@ -69,5 +69,18 @@
       .then(function () { btn.disabled = false; btn.textContent = "Search"; });
   }
 
+
+  function bindSignOut() {
+    var b = document.getElementById("signout-btn");
+    if (!b) return;
+    b.addEventListener("click", function () {
+      b.disabled = true; b.textContent = "Signing out\u2026";
+      fetch("/api/logout", { method: "POST", credentials: "same-origin" })
+        .catch(function () { /* the server session is what matters */ })
+        .then(function () { window.location.href = "index.html"; });
+    });
+  }
+
+  bindSignOut();
   $("search-form").addEventListener("submit", search);
 })();

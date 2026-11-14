@@ -138,7 +138,20 @@
     }).catch(function () {});
   }
 
+
+  function bindSignOut() {
+    var b = document.getElementById("signout-btn");
+    if (!b) return;
+    b.addEventListener("click", function () {
+      b.disabled = true; b.textContent = "Signing out\u2026";
+      fetch("/api/logout", { method: "POST", credentials: "same-origin" })
+        .catch(function () { /* the server session is what matters */ })
+        .then(function () { window.location.href = "index.html"; });
+    });
+  }
+
   function init() {
+    bindSignOut();
     $("player-close").addEventListener("click", stop);
     window.addEventListener("pagehide", stop);
     getJSON(ACCOUNTS_URL).then(function (accounts) {
