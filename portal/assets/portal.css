@@ -179,3 +179,8 @@ body.portal {
 .search-card .portal-disclaimer{color:#5b6b78}
 .cam-card .btn{background:#0f2a44;color:#ffffff;border:1px solid #0f2a44;display:inline-block;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer;text-align:center}
 .cam-card .btn:hover{background:#1f78ad;border-color:#1f78ad}
+
+/* camera wall: each camera plays in its own card */
+.cam-card video{width:100%;aspect-ratio:16/9;background:#0c1822;display:block;object-fit:contain}
+.cam-card-body{padding:10px 12px;display:grid;gap:6px}
+.cam-pager{display:flex;align-items:center;justify-content:space-between;margin:14px 0 6px;gap:10px}

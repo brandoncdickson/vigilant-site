@@ -1,15 +1,18 @@
-/* Customer camera wall: lists the cameras for the signed-in account(s) and plays live view.
- * Authentication is the server's session cookie; nothing is stored in the browser. */
+/* Customer camera wall: every camera on the page starts live automatically.
+ * Up to 8 cameras per page (the server's limit per customer). Authentication is the session cookie. */
 (function () {
   "use strict";
   var CAMERAS_URL = "/api/cameras";
   var ACCOUNTS_URL = "/api/accounts";
   var LOGIN_PAGE = "index.html";
-  var page = document.body.getAttribute("data-page");
-  var LABELS = { ready: "Connected", connecting: "Connecting, about a minute", offline: "No response", idle: "Not connected" };
-  var current = null, pc = null, keepalive = null, cams = [];
+  var PER = 8;
+  if (document.body.getAttribute("data-page") !== "cameras") return;
+
+  var LABELS = { ready: "Live", connecting: "Connecting, about a minute", offline: "No response", idle: "Connecting..." };
+  var cams = [], page = 0, pcs = {}, pending = {};
 
   function $(id) { return document.getElementById(id); }
+  function enc(id) { return encodeURIComponent(id); }
 
   function getJSON(url) {
     return fetch(url, { credentials: "same-origin", headers: { "Accept": "application/json" } })
@@ -21,42 +24,45 @@
   }
 
   function accountFilter() { var s = $("account-select"); return s ? s.value : ""; }
+  function filtered() { var a = accountFilter(); return cams.filter(function (c) { return !a || c.account === a; }); }
+  function visible() { return filtered().slice(page * PER, page * PER + PER); }
 
-  function renderCards() {
-    var grid = $("cam-grid"), acct = accountFilter();
-    grid.innerHTML = "";
-    var shown = cams.filter(function (c) { return !acct || c.account === acct; });
-    $("cam-count").textContent = shown.length + " camera" + (shown.length === 1 ? "" : "s");
-    shown.forEach(function (c) {
-      var card = document.createElement("article");
-      card.className = "cam-card";
-      card.id = "card-" + c.id;
-      var img;
-      if (c.still) {
-        img = document.createElement("img");
-        img.alt = c.name; img.src = "/api/camera/" + encodeURIComponent(c.id) + "/still.jpg?t=" + c.still;
-        img.onerror = function () { img.replaceWith(placeholder()); };
-      } else {
-        img = placeholder();
-      }
-      var body = document.createElement("div"); body.className = "cam-card-body";
-      var title = document.createElement("strong"); title.textContent = c.name;
-      var meta = document.createElement("div"); meta.className = "portal-count";
-      meta.textContent = c.account + " \u00b7 " + c.brand + (c.label ? " \u00b7 still " + c.label : "");
-      var badge = document.createElement("span"); badge.className = "badge " + c.state; badge.id = "st-" + c.id;
-      badge.textContent = LABELS[c.state] || c.state;
-      var btn = document.createElement("button"); btn.className = "btn"; btn.type = "button"; btn.textContent = "Watch live";
-      btn.addEventListener("click", function () { play(c); });
-      body.appendChild(title); body.appendChild(meta); body.appendChild(badge); body.appendChild(btn);
-      card.appendChild(img); card.appendChild(body); grid.appendChild(card);
-    });
+  function setBadge(id, cls, text) {
+    var b = $("st-" + id); if (!b) return;
+    b.className = "badge " + cls; b.textContent = text;
+  }
+  function setMsg(id, text) { var m = $("m-" + id); if (m) m.textContent = text || ""; }
+
+  function buildCard(c) {
+    var card = document.createElement("article");
+    card.className = "cam-card"; card.id = "card-" + c.id;
+    var v = document.createElement("video");
+    v.id = "v-" + c.id; v.autoplay = true; v.muted = true; v.playsInline = true; v.controls = true;
+    if (c.still) v.poster = "/api/camera/" + enc(c.id) + "/still.jpg?t=" + c.still;
+    card.appendChild(v);
+    var body = document.createElement("div"); body.className = "cam-card-body";
+    var title = document.createElement("strong"); title.textContent = c.name;
+    var meta = document.createElement("div"); meta.className = "portal-count";
+    meta.textContent = c.account + " \u00b7 " + c.brand;
+    var badge = document.createElement("span"); badge.className = "badge idle"; badge.id = "st-" + c.id;
+    badge.textContent = "Connecting...";
+    var msg = document.createElement("div"); msg.className = "portal-count"; msg.id = "m-" + c.id;
+    body.appendChild(title); body.appendChild(meta); body.appendChild(badge); body.appendChild(msg);
+    card.appendChild(body);
+    return card;
   }
 
-  function placeholder() {
-    var p = document.createElement("div");
-    p.className = "cam-placeholder";
-    p.textContent = "Still on the way";
-    return p;
+  function renderGrid() {
+    var grid = $("cam-grid"), list = visible();
+    grid.innerHTML = "";
+    list.forEach(function (c) { grid.appendChild(buildCard(c)); });
+    grid.style.gridTemplateColumns = window.innerWidth < 700 || list.length <= 1 ? "1fr" : "repeat(2,minmax(0,1fr))";
+    var total = filtered().length, pages = Math.max(1, Math.ceil(total / PER));
+    $("cam-count").textContent = total + " camera" + (total === 1 ? "" : "s");
+    $("pg").textContent = pages > 1 ? "Page " + (page + 1) + " of " + pages : "";
+    $("prev").disabled = page === 0;
+    $("next").disabled = page >= pages - 1;
+    list.forEach(function (c) { if (pcs[c.id]) { setBadge(c.id, "ready", "Live"); } });
   }
 
   function waitIce(conn) {
@@ -67,93 +73,111 @@
     });
   }
 
-  function stop() {
-    if (keepalive) { clearInterval(keepalive); keepalive = null; }
-    if (pc) { pc.close(); pc = null; }
-    if (current) { fetch("/api/camera/" + encodeURIComponent(current.id) + "/close", { method: "POST", credentials: "same-origin" }).catch(function () {}); }
-    current = null;
-    var v = $("player-video"); if (v) v.srcObject = null;
-    $("cam-player").hidden = true;
+  function dropCam(id) {
+    if (pcs[id] && pcs[id].close) pcs[id].close();
+    delete pcs[id]; delete pending[id];
+    var v = $("v-" + id); if (v) v.srcObject = null;
   }
 
-  function play(c) {
-    stop();
-    current = c;
-    $("cam-player").hidden = false;
-    $("player-name").textContent = c.name;
-    setStatus("Connecting...", "connecting");
-    $("player-msg").textContent = "Cameras can take about a minute to wake.";
-    var v = $("player-video");
-    pc = new RTCPeerConnection({ iceServers: [] });
-    pc.addTransceiver("video", { direction: "recvonly" });
-    pc.ontrack = function (e) { v.srcObject = e.streams[0]; setStatus("Live", "ready"); $("player-msg").textContent = ""; };
-    pc.onconnectionstatechange = function () { if (pc && (pc.connectionState === "failed" || pc.connectionState === "closed")) setStatus("Lost the connection", "offline"); };
-    pc.createOffer()
-      .then(function (offer) { return pc.setLocalDescription(offer); })
-      .then(function () { return waitIce(pc); })
+  function startCam(c) {
+    if (pcs[c.id] || pending[c.id]) return;
+    pending[c.id] = Date.now();
+    setBadge(c.id, "idle", "Connecting...");
+    var v = $("v-" + c.id);
+    var conn = new RTCPeerConnection({ iceServers: [] });
+    pcs[c.id] = conn;
+    conn.addTransceiver("video", { direction: "recvonly" });
+    conn.ontrack = function (e) {
+      if (v) v.srcObject = e.streams[0];
+      delete pending[c.id];
+      setBadge(c.id, "ready", "Live"); setMsg(c.id, "");
+    };
+    conn.onconnectionstatechange = function () {
+      if (conn.connectionState === "failed" || conn.connectionState === "closed") {
+        if (pcs[c.id] === conn) { dropCam(c.id); setBadge(c.id, "offline", "Reconnecting..."); }
+      }
+    };
+    conn.createOffer()
+      .then(function (offer) { return conn.setLocalDescription(offer); })
+      .then(function () { return waitIce(conn); })
       .then(function () {
-        return fetch("/api/camera/" + encodeURIComponent(c.id) + "/webrtc", {
+        return fetch("/api/camera/" + enc(c.id) + "/webrtc", {
           method: "POST", credentials: "same-origin",
-          headers: { "Content-Type": "application/sdp" }, body: pc.localDescription.sdp
+          headers: { "Content-Type": "application/sdp" }, body: conn.localDescription.sdp
         });
       })
       .then(function (res) {
-        if (res.status === 429) throw new Error("You have too many live views open. Close one and try again.");
-        if (res.status === 401) { window.location.href = LOGIN_PAGE; throw new Error("Signed out."); }
-        if (!res.ok) throw new Error("Not connected yet. Cameras can take about a minute to wake. Try again.");
+        if (res.status === 401) { window.location.href = LOGIN_PAGE; throw new Error("signed out"); }
+        if (res.status === 429) throw new Error("limit");
+        if (!res.ok) throw new Error("wait");
         return res.text();
       })
-      .then(function (answer) { return pc.setRemoteDescription({ type: "answer", sdp: answer }); })
-      .then(function () {
-        keepalive = setInterval(function () {
-          fetch("/api/camera/" + encodeURIComponent(c.id) + "/touch", { method: "POST", credentials: "same-origin" }).catch(function () {});
-        }, 20000);
-      })
+      .then(function (answer) { return conn.setRemoteDescription({ type: "answer", sdp: answer }); })
       .catch(function (err) {
-        setStatus("Not connected", "offline");
-        $("player-msg").textContent = err.message || "Live view is not available right now.";
-        stop();
-        $("cam-player").hidden = false;
+        if (pcs[c.id] === conn) dropCam(c.id);
+        if (err && err.message === "limit") {
+          setBadge(c.id, "offline", "Limit reached"); setMsg(c.id, "Too many live views open. Close one on another page and this will retry.");
+        } else if (err && err.message === "signed out") {
+          return;
+        } else {
+          setBadge(c.id, "connecting", "Connecting, about a minute");
+          setMsg(c.id, "Cameras can take about a minute to wake. This will keep trying.");
+        }
       });
   }
 
-  function setStatus(text, cls) {
-    var b = $("player-status"); b.textContent = text; b.className = "badge " + cls;
+  function tick() {
+    visible().forEach(function (c) {
+      var started = pending[c.id];
+      if (pcs[c.id] && !pending[c.id]) return;          // already live
+      if (started && Date.now() - started < 70000) return; // still trying
+      if (started) { delete pending[c.id]; }
+      startCam(c);
+    });
   }
 
-  function refreshStatus() {
+  function touchAll() {
+    Object.keys(pcs).forEach(function (id) {
+      fetch("/api/camera/" + enc(id) + "/touch", { method: "POST", credentials: "same-origin" }).catch(function () {});
+    });
+  }
+
+  function refreshList() {
     getJSON(CAMERAS_URL).then(function (rows) {
       if (!rows) return;
-      var changed = false;
-      rows.forEach(function (fresh) {
-        var old = cams.filter(function (c) { return c.id === fresh.id; })[0];
-        if (!old || String(old.still) !== String(fresh.still)) changed = true;
-      });
       cams = rows;
-      if (changed) { renderCards(); return; }  // a new still arrived: redraw the grid
-      rows.forEach(function (fresh) {
-        var b = $("st-" + fresh.id);
-        if (b) { b.className = "badge " + fresh.state; b.textContent = LABELS[fresh.state] || fresh.state; }
-      });
+      renderGrid();
     }).catch(function () {});
   }
 
+  function changePage(delta) {
+    var pages = Math.max(1, Math.ceil(filtered().length / PER));
+    var next = page + delta; if (next < 0 || next >= pages) return;
+    visible().forEach(function (c) { dropCam(c.id); });
+    page = next; renderGrid(); tick();
+  }
 
-  function bindSignOut() {
-    var b = document.getElementById("signout-btn");
-    if (!b) return;
+  function signOut() {
+    var b = $("signout-btn"); if (!b) return;
     b.addEventListener("click", function () {
       b.disabled = true; b.textContent = "Signing out\u2026";
+      Object.keys(pcs).forEach(dropCam);
       fetch("/api/logout", { method: "POST", credentials: "same-origin" })
-        .catch(function () { /* the server session is what matters */ })
-        .then(function () { window.location.href = "index.html"; });
+        .catch(function () {})
+        .then(function () { window.location.href = LOGIN_PAGE; });
     });
   }
 
   function init() {
-    bindSignOut();
-    $("player-close").addEventListener("click", stop);
-    window.addEventListener("pagehide", stop);
+    signOut();
+    $("prev").addEventListener("click", function () { changePage(-1); });
+    $("next").addEventListener("click", function () { changePage(1); });
+    window.addEventListener("pagehide", function () {
+      Object.keys(pcs).forEach(function (id) {
+        dropCam(id);
+        fetch("/api/camera/" + enc(id) + "/close", { method: "POST", credentials: "same-origin", keepalive: true }).catch(function () {});
+      });
+    });
     getJSON(ACCOUNTS_URL).then(function (accounts) {
       if (!accounts) return;
       var sel = $("account-select");
@@ -163,17 +187,20 @@
       accounts.forEach(function (a) {
         var o = document.createElement("option"); o.value = a.account; o.textContent = a.account; sel.appendChild(o);
       });
-      sel.addEventListener("change", renderCards);
+      sel.addEventListener("change", function () { page = 0; renderGrid(); tick(); });
       return getJSON(CAMERAS_URL);
     }).then(function (rows) {
       if (!rows) return;
       cams = rows;
-      renderCards();
-      setInterval(refreshStatus, 15000);
+      renderGrid();
+      tick();
+      setInterval(tick, 5000);
+      setInterval(touchAll, 20000);
+      setInterval(refreshList, 15000);
     }).catch(function (err) {
       var e = $("load-error"); e.textContent = err.message; e.hidden = false;
     });
   }
 
-  if (page === "cameras") init();
+  init();
 })();
