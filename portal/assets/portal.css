@@ -170,3 +170,11 @@ body.portal {
 .search-card{border:1px solid #dfe6ec;border-radius:10px;padding:12px 14px;background:#fff;display:grid;gap:8px}
 .search-card-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* dark text on the white cards (the site's default text is light) */
+.search-card,.cam-card,.cam-player{color:#0f2a44}
+.search-card p,.search-card strong,.cam-card strong,.cam-player strong{color:#0f2a44}
+.search-card .portal-count,.cam-card .portal-count,.cam-player .portal-count{color:#5b6b78}
+.search-card .btn-ghost{color:#0f2a44;border-color:#0f2a44}
+.search-card .portal-disclaimer{color:#5b6b78}
+.cam-card .btn{color:#fff}
