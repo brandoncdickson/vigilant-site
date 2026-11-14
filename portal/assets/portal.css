@@ -177,4 +177,5 @@ body.portal {
 .search-card .portal-count,.cam-card .portal-count,.cam-player .portal-count{color:#5b6b78}
 .search-card .btn-ghost{color:#0f2a44;border-color:#0f2a44}
 .search-card .portal-disclaimer{color:#5b6b78}
-.cam-card .btn{color:#fff}
+.cam-card .btn{background:#0f2a44;color:#ffffff;border:1px solid #0f2a44;display:inline-block;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer;text-align:center}
+.cam-card .btn:hover{background:#1f78ad;border-color:#1f78ad}
