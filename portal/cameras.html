@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Cameras | Vigilant Integrated Security</title>
+  <meta name="theme-color" content="#050b12">
+  <link rel="icon" type="image/png" href="https://vigilantintegratedsecurity.com/assets/favicon.png">
+  <link rel="stylesheet" href="https://vigilantintegratedsecurity.com/styles.css?v=6">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body class="portal" data-page="cameras">
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="https://vigilantintegratedsecurity.com/">
+        <img src="https://vigilantintegratedsecurity.com/assets/logo-horizontal.webp" alt="Vigilant Integrated Security" width="560" height="190">
+      </a>
+      <nav class="portal-tabs" aria-label="Portal sections"><a href="cameras.html" aria-current="page">Cameras</a><a href="incidents.html">Reports</a></nav>
+      <button class="btn btn-ghost portal-signout" id="signout-btn" type="button">Sign out</button>
+    </div>
+  </header>
+
+  <main class="portal-main">
+    <section class="section portal-section">
+      <div class="container">
+        <p class="eyebrow">Customer portal</p>
+        <h1 class="portal-title">Cameras</h1>
+
+        <div class="portal-toolbar">
+          <div class="field portal-account">
+            <label for="account-select">Account</label>
+            <select id="account-select"></select>
+          </div>
+          <p class="portal-count" id="cam-count" aria-live="polite"></p>
+        </div>
+
+        <div class="cam-player" id="cam-player" hidden>
+          <div class="cam-player-head">
+            <strong id="player-name"></strong>
+            <span class="badge" id="player-status">Connecting...</span>
+            <button class="btn btn-ghost" id="player-close" type="button">Close</button>
+          </div>
+          <video id="player-video" autoplay muted playsinline controls></video>
+          <p class="portal-count" id="player-msg"></p>
+        </div>
+
+        <p class="portal-error" id="load-error" hidden></p>
+        <div class="cam-grid" id="cam-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer portal-footer">
+    <div class="container footer-inner">
+      <p class="portal-disclaimer">AI review assists and does not replace human judgment. It does not guarantee detection or outcomes, and it does not confirm compliance with any law, policy, or safety rule.</p>
+      <p>&copy; 2026 Vigilant Integrated Security. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/cameras.js"></script>
+</body>
+</html>
