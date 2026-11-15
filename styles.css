@@ -952,3 +952,16 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
   .feature-grid { grid-template-columns: repeat(3, 1fr); }
   .steps.steps-3 { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Homepage monitoring card */
+.media-app {
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: radial-gradient(circle at 30% 20%, rgba(43, 140, 196, 0.35), transparent 60%), linear-gradient(160deg, #0b1b2a, #050b12);
+}
+.phone-push.app-push { position: relative; top: auto; left: auto; right: auto; width: min(100%, 340px); animation: none; }
+.card-link { display: inline-block; margin-top: 14px; position: relative; z-index: 2; }
+@media (min-width: 760px) {
+  .card-wide { grid-column: 1 / -1; flex-direction: row; }
+  .card-wide .card-media { flex: 0 0 42%; aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--line); }
+  .card-wide .card-body { align-self: center; }
+}
