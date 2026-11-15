@@ -968,3 +968,27 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
 
 /* Camera tile drawn as SVG so the detection box scales with the photo */
 .tile-svg { display: block; width: 100%; height: 100%; }
+
+/* Solar camera landing pages */
+.solar-photo { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--panel); }
+.solar-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 1111; object-fit: cover; }
+.price-tiles { display: grid; gap: 14px; grid-template-columns: 1fr; }
+.price-tile { padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.price-tile b { display: block; font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.1; color: #fff; font-variant-numeric: tabular-nums; }
+.price-tile span { color: var(--muted); }
+.compare-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.compare { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.compare th, .compare td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.compare tbody tr:last-child th, .compare tbody tr:last-child td { border-bottom: 0; }
+.compare thead th { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.compare tbody th { color: #fff; font-weight: 600; }
+.compare td { color: var(--steel); }
+.compare td.us { color: var(--sky); font-weight: 700; }
+.compare td.save { color: var(--amber); font-weight: 700; }
+.compare-note { margin-top: 12px; }
+.compare-col, .split > .prose { min-width: 0; }
+.feature-link { margin-top: 12px !important; }
+@media (min-width: 640px) {
+  .price-tiles { grid-template-columns: repeat(3, 1fr); }
+  .feature-grid.grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
