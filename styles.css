@@ -892,3 +892,76 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
   .scanline { display: none; }
   #net { opacity: 0.35; }
 }
+
+/* Monitoring & app page */
+.app-hero { align-items: center; }
+.app-hero .lede { margin-bottom: 28px; }
+.phone-wrap { display: flex; justify-content: center; }
+.phone {
+  position: relative;
+  width: min(100%, 300px);
+  aspect-ratio: 9 / 18.5;
+  border: 10px solid #0d1620;
+  border-radius: 42px;
+  background: var(--bg);
+  box-shadow: 0 0 0 1px var(--line), 0 30px 80px rgba(0, 0, 0, 0.6), var(--glow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.phone-notch { position: absolute; top: 8px; left: 50%; width: 84px; height: 22px; transform: translateX(-50%); border-radius: 999px; background: #000; z-index: 3; }
+.phone-push {
+  position: absolute; top: 40px; left: 10px; right: 10px; z-index: 2;
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 12px; border-radius: 16px;
+  background: rgba(30, 44, 58, 0.92); border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: push-in 0.6s ease-out 0.4s both;
+}
+.phone-push img { width: 32px; height: 32px; border-radius: 8px; flex: none; }
+.phone-push p { margin: 0; font-size: 0.74rem; line-height: 1.3; }
+.push-top { display: flex; justify-content: space-between; color: var(--muted); }
+.push-top strong { color: var(--text); }
+.push-title { color: #fff; font-weight: 700; margin-top: 2px !important; }
+.push-body { color: var(--steel); }
+.phone-screen { flex: 1; padding: 132px 12px 10px; display: grid; gap: 10px; align-content: start; }
+.phone-title { margin: 0; font-weight: 700; font-size: 1.05rem; }
+.phone-tile { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 9; }
+.phone-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile-live, .tile-name { position: absolute; font-size: 0.66rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(5, 11, 18, 0.75); }
+.tile-live { top: 6px; left: 6px; color: #7ee2a8; }
+.tile-name { bottom: 6px; left: 6px; color: var(--text); }
+.phone-tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); background: rgba(11, 27, 42, 0.95); padding: 8px 4px 14px; }
+.phone-tabs span { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 0.62rem; color: var(--muted); }
+.phone-tabs span.on { color: var(--sky); }
+.feature-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+.feature { padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.feature h3 { margin-bottom: 8px; }
+.feature p { margin: 0; color: var(--muted); }
+.check-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.check-list li { position: relative; padding: 16px 18px 16px 46px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--muted); }
+.check-list li::before { content: ""; position: absolute; left: 18px; top: 21px; width: 12px; height: 7px; border-left: 2px solid var(--sky); border-bottom: 2px solid var(--sky); transform: rotate(-45deg); }
+.check-list strong { color: #fff; }
+.text-link { color: var(--sky); font-weight: 700; text-decoration: none; }
+.text-link:hover, .text-link:focus-visible { text-decoration: underline; }
+@keyframes push-in { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+@media (min-width: 640px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .feature-grid { grid-template-columns: repeat(3, 1fr); }
+  .steps.steps-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Homepage monitoring card */
+.media-app {
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: radial-gradient(circle at 30% 20%, rgba(43, 140, 196, 0.35), transparent 60%), linear-gradient(160deg, #0b1b2a, #050b12);
+}
+.phone-push.app-push { position: relative; top: auto; left: auto; right: auto; width: min(100%, 340px); animation: none; }
+.card-link { display: inline-block; margin-top: 14px; position: relative; z-index: 2; }
+@media (min-width: 760px) {
+  .card-wide { grid-column: 1 / -1; flex-direction: row; }
+  .card-wide .card-media { flex: 0 0 42%; aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--line); }
+  .card-wide .card-body { align-self: center; }
+}
