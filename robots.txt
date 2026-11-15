@@ -14,3 +14,4 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://vigilantintegratedsecurity.com/trailers/sitemap.xml
+Sitemap: https://vigilantintegratedsecurity.com/sitemap.xml

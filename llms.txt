@@ -4,6 +4,10 @@
 
 Contact: (704) 796-3820 · https://vigilantintegratedsecurity.com
 
+## Monitoring and the Vigilant app
+- [Monitoring and the Vigilant app](https://vigilantintegratedsecurity.com/monitoring.html): every camera customer gets the Vigilant app (iPhone, Android and computer, installed from the customer login, no app store). AI reviews every camera alert, a Vigilant operator handles real alarms (60-second response target), and Vigilant calls the customer's contacts in their chosen order. Phone notifications for Priority and Needs review alerts, a one-tap "We're on it" reply that stops the calls, live cameras, incident reports, AI search, evidence packages with file fingerprints, Manager and Viewer team logins, ignore zones, and authenticator-app sign-in. Monitoring runs dusk to dawn as standard; extra hours or 24/7 coverage cost more.
+- Customer login: https://portal.vigilantintegratedsecurity.com
+
 ## Camera trailer leasing
 - [Camera trailers, Charlotte region](https://vigilantintegratedsecurity.com/trailers/): leased only, not sold. Solar power with lithium batteries, 4K and PTZ cameras on a telescoping mast, AI detection of people and vehicles, license plate recognition, strobes and talk-down speaker, LTE/5G, 24/7 US-based monitoring. Setup in under 20 minutes.
 - [Charlotte, NC](https://vigilantintegratedsecurity.com/trailers/charlotte/)
