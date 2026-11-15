@@ -966,6 +966,5 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
   .card-wide .card-body { align-self: center; }
 }
 
-/* AI detection box on a mockup camera tile */
-.tile-box { position: absolute; border: 2px solid #ff3b3b; border-radius: 2px; }
-.tile-box span { position: absolute; bottom: 100%; left: -2px; padding: 0 3px; background: #ff3b3b; color: #fff; font-size: 0.55rem; font-weight: 700; line-height: 1.4; white-space: nowrap; }
+/* Camera tile drawn as SVG so the detection box scales with the photo */
+.tile-svg { display: block; width: 100%; height: 100%; }
