@@ -1021,3 +1021,8 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
 .shop-prices .due b { color: var(--sky); font-size: 1.4rem; }
 .shop-card .shop-note { font-size: 0.9rem; }
 .shop-buy { margin-top: auto; align-self: flex-start; position: relative; z-index: 2; }
+.shop-qty { display: grid; gap: 8px; }
+.shop-qty label { color: #fff; font-weight: 600; }
+.shop-qty select { width: 100%; font: inherit; color: var(--text); background: rgba(5, 11, 18, 0.72); border: 1px solid rgba(126, 186, 222, 0.28); border-radius: 10px; padding: 12px 14px; }
+.shop-qty select:focus { outline: none; border-color: var(--sky); box-shadow: 0 0 0 3px rgba(111, 198, 242, 0.25); }
+.shop-prices span small { font-size: 0.82rem; }

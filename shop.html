@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://vigilantintegratedsecurity.com/assets/og-image.jpg">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 
@@ -57,13 +57,17 @@
             <div class="card-body">
               <h2>Solar Security Camera</h2>
               <p>A wireless 4G solar camera with AI detection, installed on a pole or building you already have and monitored by our AI and live operators, dusk to dawn.</p>
+              <div class="shop-qty">
+                <label for="cam-count">How many cameras?</label>
+                <select id="cam-count"><option value="1">1 camera</option><option value="2">2 cameras</option><option value="3">3 cameras</option><option value="4">4 cameras</option><option value="5">5 cameras</option><option value="6">6 cameras</option><option value="7">7 cameras</option><option value="8">8 cameras</option><option value="9">9 cameras</option><option value="10">10 cameras</option></select>
+              </div>
               <ul class="shop-prices">
-                <li><span>Install</span><b>$200</b></li>
-                <li><span>Monitoring</span><b>$200<small>/month</small></b></li>
-                <li class="due"><span>Due today</span><b>$400</b></li>
+                <li><span>Install <small>($200 each)</small></span><b id="cam-install">$200</b></li>
+                <li><span>Monitoring <small>($200 each)</small></span><b><span id="cam-monthly">$200</span><small>/month</small></b></li>
+                <li class="due"><span>Due today</span><b id="cam-due">$400</b></li>
               </ul>
-              <p class="shop-note">Prices are per camera. Choose how many cameras at checkout.</p>
-              <a class="btn btn-main shop-buy" href="https://buy.stripe.com/9B6bIUaVV2n7fE10vGgbm00">Buy cameras <span aria-hidden="true">&rarr;</span></a>
+              <p class="shop-note">Need more than 10 cameras? <a class="text-link" href="index.html#assessment">Request a quote</a>.</p>
+              <a class="btn btn-main shop-buy" id="cam-buy" href="https://buy.stripe.com/eVqfZa2ppe5PdvT92cgbm02">Buy <span id="cam-buy-n">1 camera</span> <span aria-hidden="true">&rarr;</span></a>
             </div>
           </article>
           <article class="card shop-card" id="solar-trailer">
@@ -138,5 +142,24 @@
   <a class="mobile-cta" href="index.html#assessment">Request an assessment</a>
 
   <script src="script.js?v=7"></script>
+  <script>
+  (function () {
+    // One Stripe Payment Link per camera count, so install and monitoring quantities always match.
+    var links = ['eVqfZa2ppe5PdvT92cgbm02', 'aFafZa5BB0eZ3Vj92cgbm03', '14A5kwggfbXH63r0vGgbm04', '00w8wI7JJd1L63r7Y8gbm05', '3cI7sE2pp0eZgI5bakgbm06', '3cI9AM3tt2n7ajHbakgbm07', '14A8wI4xx9Pz4Zndisgbm08', 'fZucMYfcbgdX63rbakgbm09', '3cIcMY7JJ1j38bzguEgbm0a', 'cNi3co5BB2n79fD4LWgbm0b'];
+    var sel = document.getElementById('cam-count');
+    if (!sel) return;
+    var money = function (n) { return '$' + n.toLocaleString('en-US'); };
+    var update = function () {
+      var n = parseInt(sel.value, 10) || 1;
+      document.getElementById('cam-install').textContent = money(200 * n);
+      document.getElementById('cam-monthly').textContent = money(200 * n);
+      document.getElementById('cam-due').textContent = money(400 * n);
+      document.getElementById('cam-buy-n').textContent = n + (n === 1 ? ' camera' : ' cameras');
+      document.getElementById('cam-buy').href = 'https://buy.stripe.com/' + links[n - 1];
+    };
+    sel.addEventListener('change', update);
+    update();
+  })();
+  </script>
 </body>
 </html>
