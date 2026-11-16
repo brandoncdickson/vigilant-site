@@ -1005,3 +1005,19 @@ a.logo-card:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; 
   .nav-links .nav-cta { grid-column: 2; margin-top: 12px; padding: 12px 16px; }
   .nav.is-open ~ .mobile-cta { display: none; }
 }
+
+/* Shop */
+.shop-grid { margin-top: 0; }
+.shop-card h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+.shop-card .card-body { display: flex; flex-direction: column; gap: 16px; flex: 1; }
+.shop-card .card-body > p { margin: 0; }
+.shop-prices { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; }
+.shop-prices li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.shop-prices li:last-child { border-bottom: 0; }
+.shop-prices b { color: #fff; font-size: 1.15rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.shop-prices small { font-size: 0.85rem; font-weight: 500; color: var(--muted); }
+.shop-prices .due { background: rgba(43, 140, 196, 0.12); }
+.shop-prices .due span { color: #fff; font-weight: 700; }
+.shop-prices .due b { color: var(--sky); font-size: 1.4rem; }
+.shop-card .shop-note { font-size: 0.9rem; }
+.shop-buy { margin-top: auto; align-self: flex-start; position: relative; z-index: 2; }
