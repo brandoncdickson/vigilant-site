@@ -48,6 +48,9 @@
     var statusEl = form.querySelector('.form-status');
     var submitBtn = form.querySelector('.btn-submit');
     var trap = document.getElementById('f-website');
+    // Bots that fill and submit a form within a second or two of loading it are dropped.
+    var loadedAt = Date.now();
+    var MIN_FILL_MS = 3000;
 
     var showSuccess = function () {
       var nameInput = document.getElementById('f-name');
@@ -61,6 +64,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (trap && trap.value) { showSuccess(); return; }
+      if (Date.now() - loadedAt < MIN_FILL_MS) { showSuccess(); return; }
       submitBtn.disabled = true;
       statusEl.classList.remove('is-error');
       statusEl.textContent = 'Sending your request...';
